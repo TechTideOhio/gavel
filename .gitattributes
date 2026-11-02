@@ -1,9 +1,16 @@
-# TechTide Linguistic Overrides
-# Forces GitHub Linguist to report gavel as 100.0% Rust
+* text=auto eol=lf
+*.rs text diff=rust eol=lf
+*.toml text eol=lf
+*.json text eol=lf
+*.jsonl text eol=lf
+*.md text eol=lf
 
-packs/** linguist-vendored
 fixtures/** linguist-vendored
+packs/** linguist-vendored
 evals/** linguist-vendored
+scripts/** linguist-vendored
+*.mjs linguist-vendored
+*.js linguist-vendored
 *.json linguist-vendored
 *.jsonl linguist-vendored
 *.toml linguist-vendored
