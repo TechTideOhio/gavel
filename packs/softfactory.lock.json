@@ -1,0 +1,32 @@
+{
+  "schema_version": "sha256-framed-v1",
+  "suite_name": "softfactory-judge-pack",
+  "suite_version": "0.1.0",
+  "overall_lock_digest": "f134f33954f6219549df177a924896a6ff5869df8a7438a8ed6a6873f75ad342",
+  "cases": {
+    "sf-harness-postmortem-judge": {
+      "case_id": "sf-harness-postmortem-judge",
+      "stratum": "hygiene",
+      "dataset_path": "packs/fixtures/harness_postmortem_judge_120.jsonl",
+      "dataset_sha256": "eb60bd516162375df1572a3a9a6c9c7114253dd0725c9e323dba01bc5cb87a95",
+      "rubric_hash": "442ab5ed135dc01cd845e62d5517565646fbc456be2bea7e62f823eb32868307",
+      "model_config_hash": "bd4a4e19cfb7fceafe093a95df8d69fdca076f084da74807cf9d7cf5c5ca065f"
+    },
+    "sf-techtideai2-clarification-judge": {
+      "case_id": "sf-techtideai2-clarification-judge",
+      "stratum": "core",
+      "dataset_path": "packs/fixtures/techtideai2_clarification_judge_120.jsonl",
+      "dataset_sha256": "4570335d38ec0490e4ae38a12720406bc2393640194df93112998969c458aa64",
+      "rubric_hash": "b237f6e678aa0bc8d3e72e68047f3f67aa3fa7ccb7ad998ac186f03637841382",
+      "model_config_hash": "f054a33c72344459211b3f1833745b79d599d627f4ef49322447670d9d469a39"
+    },
+    "sf-vsp-rls-explanation-judge": {
+      "case_id": "sf-vsp-rls-explanation-judge",
+      "stratum": "critical",
+      "dataset_path": "packs/fixtures/vsp_rls_judge_120.jsonl",
+      "dataset_sha256": "14022f2375e9b62229584389c50202f97f5cb7a0bf63e5094a0a0311acdaa948",
+      "rubric_hash": "4cabb4507ede4263e116e00f7eb650ef3c56e6d6d8c03c20960c12eeae9fd31a",
+      "model_config_hash": "a33181736fbb1ff14871a11b22bef19e0073afeed60dfda74c099a8714dcae31"
+    }
+  }
+}

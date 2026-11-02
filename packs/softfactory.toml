@@ -1,0 +1,120 @@
+[suite]
+name = "softfactory-judge-pack"
+version = "0.1.0"
+description = "Calibrated LLM judge suite for Soft Factory qualitative gates"
+
+[weights]
+critical = 0.50
+core = 0.35
+hygiene = 0.15
+
+[[cases]]
+id = "sf-vsp-rls-explanation-judge"
+stratum = "critical"
+severity = "blocker"
+description = "Binary judge grading database migration reviews for tenant isolation gaps"
+dataset_path = "packs/fixtures/vsp_rls_judge_120.jsonl"
+pinned_model = "claude-3-5-sonnet-20241022"
+judge_temperature = 0.0
+prompt_version = "v3-critique-first"
+min_labeled_examples = 120
+min_test_tpr = 0.90
+min_test_tnr = 0.85
+min_youden_j = 0.75
+min_cohen_kappa = 0.75
+min_critique_words = 8
+prompt_few_shot_ids = ["vsp-rls-001", "vsp-rls-002"]
+
+[cases.rubric]
+title = "VSP Tenant Boundary Migration Rubric"
+instruction = "Critique whether the agent correctly identifies Row-Level Security tenant isolation risks before emitting PASS or FAIL."
+pass_criteria = [
+    "Accurately identifies missing or permissive USING clause",
+    "Verifies auth.uid() tenant boundary enforcement"
+]
+fail_criteria = [
+    "Approves permissive USING(true) policy",
+    "Hallucinates non-existent database tables or files"
+]
+required_tokens = ["tenant", "boundary"]
+forbidden_tokens = ["USING (true)"]
+
+[cases.split_policy]
+train_ratio = 0.20
+dev_ratio = 0.40
+test_ratio = 0.40
+seed = 42
+
+[[cases]]
+id = "sf-techtideai2-clarification-judge"
+stratum = "core"
+severity = "graded"
+description = "Binary judge grading multi-turn clarification questions for non-assumption discipline"
+dataset_path = "packs/fixtures/techtideai2_clarification_judge_120.jsonl"
+pinned_model = "gpt-4o-2024-11-20"
+judge_temperature = 0.0
+prompt_version = "v2-binary"
+min_labeled_examples = 120
+min_test_tpr = 0.85
+min_test_tnr = 0.85
+min_youden_j = 0.70
+min_cohen_kappa = 0.70
+min_critique_words = 8
+prompt_few_shot_ids = ["tt2-clarify-001", "tt2-clarify-002"]
+
+[cases.rubric]
+title = "TechTideAI2 Clarification Question Rubric"
+instruction = "Critique whether the agent asks only for missing requirements without guessing implementation details."
+pass_criteria = [
+    "Asks focused question targeting unknown constraints",
+    "Does not assume unstated design choices"
+]
+fail_criteria = [
+    "Guesses unconfirmed architecture or stack",
+    "Hallucinates user intent"
+]
+required_tokens = ["clarification", "constraint"]
+forbidden_tokens = []
+
+[cases.split_policy]
+train_ratio = 0.20
+dev_ratio = 0.40
+test_ratio = 0.40
+seed = 42
+
+[[cases]]
+id = "sf-harness-postmortem-judge"
+stratum = "hygiene"
+severity = "graded"
+description = "Binary judge grading agent handoff postmortems for root-cause attribution"
+dataset_path = "packs/fixtures/harness_postmortem_judge_120.jsonl"
+pinned_model = "claude-3-5-haiku-20241022"
+judge_temperature = 0.0
+prompt_version = "v2-pinned"
+min_labeled_examples = 120
+min_test_tpr = 0.85
+min_test_tnr = 0.80
+min_youden_j = 0.65
+min_cohen_kappa = 0.65
+min_critique_words = 8
+prompt_few_shot_ids = ["harness-post-001", "harness-post-002"]
+
+[cases.rubric]
+title = "Agent Harness Session Postmortem Rubric"
+instruction = "Critique whether the handoff note identifies exact files changed and reproduction logs."
+pass_criteria = [
+    "Names specific modified file paths",
+    "Provides actionable next steps"
+]
+fail_criteria = [
+    "Omits touched file references",
+    "Claims untested completion"
+]
+required_tokens = ["handoff", "reproduction"]
+forbidden_tokens = []
+
+[cases.split_policy]
+train_ratio = 0.20
+dev_ratio = 0.40
+test_ratio = 0.40
+seed = 42

@@ -1,0 +1,10 @@
+# TechTide Linguistic Overrides
+# Forces GitHub Linguist to report gavel as 100.0% Rust
+
+packs/** linguist-vendored
+fixtures/** linguist-vendored
+evals/** linguist-vendored
+*.json linguist-vendored
+*.jsonl linguist-vendored
+*.toml linguist-vendored
+*.ps1 linguist-vendored
