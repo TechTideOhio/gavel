@@ -10,7 +10,7 @@
 [![Rust: 2021 / 1.82+](https://img.shields.io/badge/Rust-2021%20%2F%201.82%2B-orange.svg)](Cargo.toml)
 [![Zero-FFI](https://img.shields.io/badge/Dependencies-Zero--FFI%20Pure%20Rust-purple.svg)](Cargo.toml)
 
-[Quickstart](#60-second-quickstart) | [Why gavel?](#why-gavel) | [Prevalence Distortion Table](#uncalibrated-judge-mirage-vs-rogan-gladen-true-prevalence) | [Architectural Foundations](#architectural-foundations--engineering-syntheses) | [Feature Matrix](#feature-comparison-matrix) | [The Complete TideOS Eval Kit](#the-complete-tideos-eval-kit) | [Contributing](CONTRIBUTING.md)
+[Quickstart](#60-second-quickstart) | [Why gavel?](#why-gavel) | [Prevalence Distortion Table](#uncalibrated-judge-mirage-vs-rogan-gladen-true-prevalence) | [Architectural Foundations](#architectural-foundations--engineering-syntheses) | [Feature Matrix](#feature-comparison-matrix) | [The Complete TideOS Eval Kit](#the-complete-tideos-eval-kit) | [About](#about) | [Contributing](CONTRIBUTING.md)
 
 </div>
 
@@ -180,6 +180,14 @@ gavel repo .
 
 ---
 
+## About
+
+`gavel` is developed by Alex Cinovoj and the engineering team at [TechTide AI](https://techtideai.io) as part of the TideOS Eval Kit.
+
+For enterprise evaluations, custom agent harnesses, and autonomous development infrastructure, visit [techtideai.io](https://techtideai.io).
+
+---
+
 ## License
 
-MIT License. Copyright (c) 2026 TechTide Ohio.
+MIT License. Copyright (c) 2026 [TechTide AI](https://techtideai.io).
