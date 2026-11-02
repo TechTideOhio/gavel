@@ -10,7 +10,7 @@
 [![Rust: 2021 / 1.82+](https://img.shields.io/badge/Rust-2021%20%2F%201.82%2B-orange.svg)](Cargo.toml)
 [![Zero-FFI](https://img.shields.io/badge/Dependencies-Zero--FFI%20Pure%20Rust-purple.svg)](Cargo.toml)
 
-[Quickstart](#60-second-quickstart) | [Why gavel?](#why-gavel) | [Prevalence Distortion Table](#uncalibrated-judge-mirage-vs-rogan-gladen-true-prevalence) | [Author Reviews](#author-reviews--engineering-syntheses) | [Feature Matrix](#feature-comparison-matrix) | [The Complete TideOS Eval Kit](#the-complete-tideos-eval-kit) | [Contributing](CONTRIBUTING.md)
+[Quickstart](#60-second-quickstart) | [Why gavel?](#why-gavel) | [Prevalence Distortion Table](#uncalibrated-judge-mirage-vs-rogan-gladen-true-prevalence) | [Architectural Foundations](#architectural-foundations--engineering-syntheses) | [Feature Matrix](#feature-comparison-matrix) | [The Complete TideOS Eval Kit](#the-complete-tideos-eval-kit) | [Contributing](CONTRIBUTING.md)
 
 </div>
 
@@ -61,34 +61,26 @@ When an uncalibrated judge (e.g. TPR = 0.85, TNR = 0.75) evaluates an unlabeled 
 
 ---
 
-## Author Reviews & Engineering Syntheses
+## Architectural Foundations & Engineering Syntheses (Alex Cinovoj / TechTideAI)
 
-`gavel` incorporates the direct architectural feedback and design principles of three leading software and agent engineers:
+`gavel` incorporates Alex Cinovoj's three core engineering pillars for classifier-calibrated LLM judges:
 
-### 1. Peter Steinberger Pattern: Extreme Craft & Desktop Ergonomics
-> *"Sub-2 MB standalone binary with zero C-FFI or runtime bloat. Instant audio bell (`\x07`) on critique-order violations, leakage, or calibration deficit. Clean ASCII tables with `gavel table` giving raw sampling and prevalence physics without fluff. Approved."*  
-> **Peter Steinberger** (@steipete)
-
-- **Sub-2 MB Binary**: Compiled to `1.78 MB` with `opt-level = "z"`, `lto = true`, and `strip = true`.
+### 1. Extreme Craft & Desktop Ergonomics (Alex Cinovoj)
+- **Sub-2 MB Standalone Binary**: Compiled to `1.78 MB` with `opt-level = "z"`, `lto = true`, and `strip = true`.
 - **Snappy Terminal UX**: Zero Python runtime, zero Docker requirement, and sub-10ms offline execution.
-- **Audio Notification**: Emits `\x07` terminal alert the instant a gate, leakage check, or critique-before-verdict order fails.
-- **Desktop Ergonomics**: High-visibility terminal summaries and canonical `--json` `HarnessEnvelope<T>`.
+- **Audio Notification**: Emits `\x07` terminal alert the instant a gate, leakage check, or critique-before-verdict check trips.
+- **Desktop Ergonomics**: Clean ASCII tables with `gavel table` displaying judge prevalence distortion physics without fluff.
 
-### 2. Harrison Chase Pattern: Production vs Demo Observability
-> *"Treating an LLM judge as an uncalibrated oracle is the fastest way to mislead a product team. Measuring TPR, TNR, Youden's J, and Cohen's kappa on a held-out test split, paired with prompt dev-to-test generalization gap tracking, turns qualitative grading into rigorous engineering. Native OpenTelemetry W3C span export allows direct integration with LangSmith and OTel collectors. Approved."*  
-> **Harrison Chase** (@hwchase17)
-
+### 2. Production vs Demo Observability (Alex Cinovoj)
 - **W3C OpenTelemetry / OpenInference Export**: Generates compliant trace spans with `eval.judge_tpr`, `eval.judge_tnr`, `eval.youden_j`, `eval.cohen_kappa`, and `eval.rogan_gladen_prevalence`.
 - **Dev-to-Test Generalization Gap**: Tracks $\Delta J = J_{\text{dev}} - J_{\text{test}}$ to immediately detect prompt overfitting on dev before evaluating test.
-- **Economic Misclassification Modeling**: Models judge token consumption (critique tokens + rubric tokens) against production false-positive risk.
+- **Economic Misclassification Modeling**: Quantifies the cost trade-off between judge token consumption and production false-positive risk.
 
-### 3. TJ Sweet Pattern: Lineage, Lineage, Lineage & Cryptographic Ledgers
-> *"Uncalibrated raw pass rates are mathematical illusions. Inverting the sensor model via Rogan-Gladen (1978) with non-parametric bootstrap confidence intervals provides honest prevalence tracking. Backing every labeled judgment with sequential SHA-256 Merkle chaining and length-prefixed sha256-framed-v1 lockfiles ensures complete auditability. Approved."*  
-> **TJ Sweet** (@orneryd)
-
+### 3. Mathematical Rigor & Provenance Ledgers (Alex Cinovoj)
 - **Rogan-Gladen (1978) Debiasing**: Inverts the linear sensor model $\hat{\theta}_{\text{RG}} = \frac{p_{\text{obs}} + \text{TNR} - 1}{\text{TPR} + \text{TNR} - 1}$ with non-parametric bootstrap 95% confidence intervals ($B = 2000$).
 - **Sequential Merkle Judgment Chaining**: Every labeled example and score is chained via $H(\text{prev\_hash} \parallel \text{payload})$ with domain tag `b"tideos-gavel-judgment-v1\0"`.
 - **sha256-framed-v1 Lockfiles**: Domain-separated, length-prefixed cryptographic lockfiles prevent tampering with rubric criteria, test datasets, or calibration bounds.
+- **Exhaustive Regime Classification**: Classifies judges into `CalibratedClassifier`, `SensitivityDeficit`, `SpecificityDeficit`, `DevOverfitDrift`, `SplitContaminationBlocked`, `CritiqueOrderBlocked`, `UnpinnedModelBlocked`, and `InsufficientCorpusBlocked`.
 
 ---
 
