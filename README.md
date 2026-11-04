@@ -180,6 +180,7 @@ gavel repo .
 | **10** | **`poise`** | `poise-eval` | `1.89 MB` | **Pairwise A/B Position Bias Control, Length Capping & LC-WinRate** |
 | **11** | `plumb` | `plumb-eval` | `1.92 MB` | **Paired Statistical Significance, Bootstrapped CIs & TOST Equivalence** |
 | **12** | `weir` | `weir-eval` | `1.76 MB` | **CI Deployment Regression Gate, Per-Category Thresholds & PR Reporting** |
+| **13** | `eddy` | `eddy-eval` | `< 2.0 MB` | **Online Production Evals, Hash Sampling, CUSUM Drift & Shadow Replay** |
 
 ---
 
