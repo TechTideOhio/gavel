@@ -177,6 +177,9 @@ gavel repo .
 | **7** | **`temper`** | `temper-eval` | `0.89 MB` | **Multi-Trial Reliability (pass@k vs pass^k at Real Temperature)** |
 | **8** | **`parley`** | `parley-eval` | `1.77 MB` | **Simulated Users for Multi-Turn State, Memory & Policy Evals** |
 | **9** | **`gavel`** | `gavel-eval` | `1.85 MB` | **Classifier-Calibrated LLM Judge, TPR/TNR & Rogan-Gladen Debiasing** |
+| **10** | **`poise`** | `poise-eval` | `1.89 MB` | **Pairwise A/B Position Bias Control, Length Capping & LC-WinRate** |
+| **11** | `plumb` | `plumb-eval` | `1.92 MB` | **Paired Statistical Significance, Bootstrapped CIs & TOST Equivalence** |
+| **12** | `weir` | `weir-eval` | `1.76 MB` | **CI Deployment Regression Gate, Per-Category Thresholds & PR Reporting** |
 
 ---
 
